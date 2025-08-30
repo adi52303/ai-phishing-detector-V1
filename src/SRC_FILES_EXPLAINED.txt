@@ -1,0 +1,98 @@
+This folder contains the source code for the AI Phishing Detector project. Below is a description of each file:
+
+__init__.py
+
+Marks this folder as a Python package.
+
+Required so other scripts (like the Streamlit app) can import functions from src/.
+
+convert_to_sample_format.py
+
+Utility script for converting raw datasets into a common format with just two columns:
+
+text, label
+
+
+Ensures phishing and legitimate datasets are consistent before training.
+
+features.py
+
+Implements feature engineering for emails.
+
+Extracts useful indicators such as:
+
+Number of URLs
+
+Presence of suspicious domains
+
+IP-based URLs
+
+Use of URL shorteners
+
+Suspicious keywords ("urgent", "verify", etc.)
+
+Provides functions like extract_url_features() and to_feature_frame() used during training and in the Streamlit app.
+
+predict.py
+
+Small script for testing the trained model on new emails.
+
+Loads the saved .joblib model and outputs whether the email is Phishing or Legit with probability.
+
+Useful for debugging without the web app.
+
+prepare_data.py
+
+Handles data preparation tasks before training:
+
+Cleans raw text (removes headers, special characters).
+
+Formats datasets into a standard structure.
+
+Saves processed CSVs for training.
+
+text_clean.py
+
+Contains text preprocessing functions:
+
+Lowercasing
+
+Removing punctuation and stopwords
+
+Token cleaning
+
+Ensures emails are in a normalized form for TF-IDF vectorization.
+
+train_baseline_plus.py
+
+Early training script used for experimentation.
+
+Trained a baseline Logistic Regression model using only TF-IDF features.
+
+Useful reference for comparing against the full pipeline.
+
+train_full_pipeline.py
+
+Main training script (end-to-end pipeline).
+
+Steps:
+
+Load raw email datasets.
+
+Clean & normalize text.
+
+Handle class imbalance (downsampling).
+
+Extract features (TF-IDF + URL heuristics).
+
+Train Logistic Regression model.
+
+Evaluate on validation & test sets.
+
+Save final model → models/tfidf_logreg.joblib.
+
+utils.py
+
+Contains helper functions used across scripts.
+
+Common tasks: saving/loading models, logging metrics, handling paths.
