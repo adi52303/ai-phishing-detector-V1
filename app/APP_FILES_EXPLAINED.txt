@@ -1,0 +1,33 @@
+This folder contains the Streamlit web application for the AI Phishing Detector. It provides an interactive UI for testing the trained model.
+
+app.py
+
+The main entry point of the Streamlit application.
+
+Responsibilities:
+
+Loads the trained model (models/tfidf_logreg.joblib).
+
+Provides a text box for users to paste email content.
+
+Allows users to adjust the decision threshold with a slider (default = 0.30).
+
+Runs the model to predict whether the email is Phishing or Legit.
+
+Displays prediction probability.
+
+Shows an explainability panel (Why this decision?) with feature signals:
+
+Number of URLs
+
+Suspicious domains
+
+Keywords (urgent, verify, etc.)
+
+Use of shorteners or IP addresses
+
+Basic instructions on how to run the app locally:
+
+.\.venv\Scripts\python.exe -m streamlit run app\app.py
+
+Useful for users who clone the repo and want a quick-start guide.
