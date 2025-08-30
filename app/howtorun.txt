@@ -1,0 +1,3 @@
+.\.venv\Scripts\python.exe -m streamlit run app\app.py
+
+Use this command to launch the web app.
