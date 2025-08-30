@@ -63,6 +63,7 @@ Confusion Matrix:
 🖥️ Streamlit App
 
 The model is deployed as an interactive Streamlit app.
+📌 👉 Live Demo Here- https://ai-phishing-detector-v1-pqj83jt538g3fbhhnqxq2x.streamlit.app/
 
 Features:
 
@@ -72,7 +73,7 @@ Adjustable decision threshold slider
 
 Explainability panel showing: suspicious words, domains, URLs, etc.
 
-📌 Live Demo: (link will appear here after you deploy)
+
 
 ⚙️ How to Run Locally
 
