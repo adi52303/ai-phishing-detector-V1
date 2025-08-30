@@ -3,7 +3,7 @@ import re
 import pandas as pd
 from urllib.parse import urlparse
 
-# Expand/edit this over time as you encounter legit newsletters
+
 SAFE_DOMAINS = {
     "codingninjas.com", "youtube.com", "youtu.be", "linkedin.com",
     "instagram.com", "facebook.com", "iitg.ac.in", "iitguwahati.ac.in",
@@ -16,7 +16,43 @@ SHORTENERS = {
 
 # Trimmed suspicious words – avoid common marketing words to reduce false positives
 SUSPICIOUS_WORDS = {
-    "password","suspend","limited","security","confirm","login","verify","reactivate"
+    # 🔒 Account / Security threats
+    "password", "suspend", "limited", "security", "confirm", "login", "verify", 
+    "reactivate", "unlock", "reset", "deactivate", "credentials", "unauthorized", 
+    "blocked", "lock", "update account", "revalidate",
+
+    # ⚠️ Urgency / Fear triggers
+    "urgent", "immediately", "expire", "warning", "alert", "attention", 
+    "action required", "final notice", "last chance", "limited time", 
+    "important", "critical", "now", "instantly", "asap", "response needed",
+
+    # 💳 Financial / Payment baits
+    "bank", "account", "billing", "invoice", "payment", "transaction", 
+    "refund", "tax", "irs", "lottery", "prize", "jackpot", "bonus", 
+    "crypto", "bitcoin", "wire transfer", "western union", "winnings", 
+    "payout", "compensation", "claim reward",
+
+    # 🔗 Clickbait / Malicious links
+    "click", "link", "here", "download", "attachment", "access now", 
+    "open", "update", "login here", "tap", "visit", "url", "http", "https",
+    "safe login", "confirm link", "secure portal",
+
+    # 🏛️ Spoofed Authority / Brands
+    "official", "secure", "trusted", "verify identity", "government", 
+    "support", "admin", "compliance", "apple", "paypal", "google", 
+    "microsoft", "outlook", "amazon", "netflix", "facebook", 
+    "instagram", "bank of america", "hsbc", "citibank",
+
+    # 🕵️ Social Engineering
+    "urgent request", "confidential", "restricted", "identity theft", 
+    "authentication", "credentials required", "keep safe", 
+    "not shared", "important message", "verify ownership", 
+    "account compromised", "unusual activity", "security check",
+
+    # 🎁 Too Good To Be True
+    "congratulations", "winner", "exclusive offer", "guaranteed", 
+    "act fast", "no risk", "free trial", "free access", "zero cost", 
+    "special promotion", "gift card", "voucher", "limited offer"
 }
 
 SUSPICIOUS_TLDS = {".ru", ".xyz", ".zip", ".top", ".quest", ".cam", ".click"}
@@ -80,3 +116,4 @@ def to_feature_frame(X):
         if c in df.columns:
             df.drop(columns=[c], inplace=True)
     return df
+
