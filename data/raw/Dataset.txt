@@ -1,0 +1,29 @@
+### Datasets Used
+
+Enron Email Dataset (Kaggle)- https://www.kaggle.com/datasets/wcukierski/enron-email-dataset
+
+Source: Enron Email Dataset
+
+Contains ~500,000 real-world emails from Enron employees, released during the U.S. Federal Energy Regulatory Commission investigation.
+
+Commonly used for natural language processing (NLP), email classification, and fraud detection research.
+
+Phishing Emails Dataset (Kaggle) - https://www.kaggle.com/datasets/subhajournal/phishingemails
+
+Source: Phishing Emails Dataset
+
+Contains ~18,000 emails labeled as phishing or legitimate.
+
+Useful for training and evaluating supervised phishing detection models.
+
+⚠️ Why the Datasets Are Not Included in This Repository
+
+Due to GitHub’s file size limitations (100 MB per file) and storage best practices:
+
+The Enron dataset (~423 MB) and Phishing dataset (~60 MB) are too large to upload directly to GitHub.
+
+GitHub is intended for source code, not large datasets.
+
+To keep the repository lightweight and recruiter-friendly, only trained models and sample/demo CSVs are included here.
+
+👉 If you want to retrain the model yourself, please download the datasets directly from Kaggle via the links above.
