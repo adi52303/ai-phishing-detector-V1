@@ -4,25 +4,19 @@ import joblib
 import pandas as pd
 import streamlit as st
 
-# --------------------
-# Fix Python path so we can import from src/
-# --------------------
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # project root
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  
 SRC_DIR = os.path.join(ROOT, "src")
 if SRC_DIR not in sys.path:
     sys.path.append(SRC_DIR)
 
-from features import to_feature_frame, extract_url_features  # now works
+from features import to_feature_frame, extract_url_features  
 
-# --------------------
-# Load model
-# --------------------
+
 MODEL_PATH = os.path.join(ROOT, "models", "tfidf_logreg.joblib")
 model = joblib.load(MODEL_PATH)
 
-# --------------------
-# Streamlit Page Config
-# --------------------
+
 st.set_page_config(
     page_title="AI Phishing Detector",
     page_icon="🛡️",
@@ -30,32 +24,24 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --------------------
-# Header
-# --------------------
+
 st.markdown("<h1 style='text-align: center; color: #2E86C1;'>🛡️ AI Phishing Detector</h1>", unsafe_allow_html=True)
 st.write("Paste an email (subject + body). The model predicts **Phishing** or **Legit** with probability and feature explanations.")
 
-# --------------------
-# Threshold slider
-# --------------------
+
 threshold = st.slider(
     "Decision threshold (lower = stricter, higher = lenient)",
     0.0, 1.0, 0.30, 0.01
 )
 
-# --------------------
-# Input Box
-# --------------------
+
 text = st.text_area(
     "✉️ Email text",
     height=220,
     placeholder="Paste an email here..."
 )
 
-# --------------------
-# Feature Debugger
-# --------------------
+
 def _debug_flags(text: str) -> dict:
     info = extract_url_features(text or "")
     return {
@@ -70,19 +56,17 @@ def _debug_flags(text: str) -> dict:
         "domains": info.get("_domains", "")
     }
 
-# --------------------
-# Main Button
-# --------------------
+
 if st.button("🔍 Analyze"):
     if not text.strip():
         st.warning("⚠️ Please paste some text.")
     else:
-        # Prediction
+        
         X = pd.DataFrame({"text": [text]})
         proba = float(model.predict_proba(X)[0][1])  # P(phishing)
         label = "PHISHING" if proba >= threshold else "LEGIT"
 
-        # UI Styling
+        
         if label == "PHISHING":
             st.markdown(
                 f"<h2 style='color:#C0392B;'>🚨 Prediction: {label}</h2>", unsafe_allow_html=True
@@ -92,14 +76,13 @@ if st.button("🔍 Analyze"):
                 f"<h2 style='color:#27AE60;'>✅ Prediction: {label}</h2>", unsafe_allow_html=True
             )
 
-        # Probability Meter
+       
         st.progress(min(max(proba, 0.0), 1.0))
         st.metric("Phishing Probability", f"{proba:.3f}")
 
         st.caption("Tip: Adjust the threshold above to tune sensitivity.")
 
-        # Explainability
-        # Explainability (User-Friendly)
+        
     with st.expander("📊 Why this decision? (feature signals)"):
         flags = _debug_flags(text)
 
@@ -119,8 +102,8 @@ if st.button("🔍 Analyze"):
             st.write(explanation)
 
 
-# --------------------
-# Footer
+
 # --------------------
 st.markdown("<hr/>", unsafe_allow_html=True)
 st.caption("🔧 Model: TF-IDF + URL Features + Logistic Regression | Built by Aditya Das with ❤️ using Streamlit")
+
