@@ -1,0 +1,55 @@
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.joblib
+
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode / PyCharm / Editors
+.vscode/
+.idea/
+
+# -------------------------
+# Data (avoid huge CSVs)
+# -------------------------
+# Ignore all raw + processed data
+data/raw/*
+data/processed/*
+
+# Allow small demo sample CSVs
+!data/raw/phishing_sample.csv
+!data/raw/legit_sample.csv
+
+# -------------------------
+# Models
+# -------------------------
+# Ignore experimental/old models
+models/*
+# Keep best final model
+!models/tfidf_logreg.joblib
+
+# -------------------------
+# Plots & Reports
+# -------------------------
+# Ignore auto-generated plots/reports
+plots/*
+# Keep key visuals for README
+!plots/confusion_matrix.png
+!plots/roc_curve.png
+
+# -------------------------
+# OS & Misc
+# -------------------------
+.DS_Store
+Thumbs.db
