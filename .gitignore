@@ -1,56 +1,55 @@
 # -------------------------
-# Python
+# Python cache / venv
 # -------------------------
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.pyd
-*.pkl
-
-
-# Virtual environments
+*.so
+*.egg-info/
 .venv/
-env/
 venv/
+env/
 
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
-
-# VSCode / PyCharm / Editors
+# -------------------------
+# IDE / OS files
+# -------------------------
+.DS_Store
+Thumbs.db
 .vscode/
 .idea/
 
 # -------------------------
-# Data (avoid huge CSVs)
+# Data
 # -------------------------
-# Ignore all raw + processed data
+# Ignore raw datasets (can be huge or sensitive)
 data/raw/*
-data/processed/*
 
-# Allow small demo sample CSVs
-!data/raw/phishing_sample.csv
-!data/raw/legit_sample.csv
+# Keep processed splits (small + reproducible)
+!data/processed/train.csv
+!data/processed/val.csv
+!data/processed/test.csv
+!data/processed/normalized.csv
 
 # -------------------------
 # Models
 # -------------------------
-# Ignore old experimental models, but keep main ones
-!models/
+# Ignore all model junk
+models/*
+
+# Keep only the final deployed artifacts
 !models/tfidf_logreg.joblib
 !models/threshold.txt
 !models/metrics.json
 
 # -------------------------
-# Plots & Reports
+# Streamlit / Logs
 # -------------------------
-# Ignore auto-generated plots/reports
-plots/*
-# Keep key visuals for README
-!plots/confusion_matrix.png
-!plots/roc_curve.png
+.streamlit/
+logs/
+*.log
 
 # -------------------------
-# OS & Misc
+# Jupyter
 # -------------------------
-.DS_Store
-Thumbs.db
+*.ipynb_checkpoints
