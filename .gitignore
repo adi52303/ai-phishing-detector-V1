@@ -6,7 +6,7 @@ __pycache__/
 *.pyo
 *.pyd
 *.pkl
-*.joblib
+
 
 # Virtual environments
 .venv/
@@ -34,10 +34,11 @@ data/processed/*
 # -------------------------
 # Models
 # -------------------------
-# Ignore experimental/old models
-models/*
-# Keep best final model
+# Ignore old experimental models, but keep main ones
+!models/
 !models/tfidf_logreg.joblib
+!models/threshold.txt
+!models/metrics.json
 
 # -------------------------
 # Plots & Reports
