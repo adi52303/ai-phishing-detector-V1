@@ -1,5 +1,7 @@
 🛡️ AI Phishing Email Detector
 
+LIVE DEMO-> https://ai-phishing-detector-v1.streamlit.app/
+
 📌 Project Overview
 
 Phishing remains one of the most dangerous cybersecurity threats, tricking users into revealing sensitive information via fraudulent emails.
@@ -63,7 +65,7 @@ Confusion Matrix:
 🖥️ Streamlit App
 
 The model is deployed as an interactive Streamlit app.
-📌 👉 Live Demo Here- https://ai-phishing-detector-v1-pqj83jt538g3fbhhnqxq2x.streamlit.app/
+📌 👉 Live Demo Here- https://ai-phishing-detector-v1.streamlit.app/
 
 Features:
 
